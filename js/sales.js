@@ -1,56 +1,56 @@
+'use strict';
 var storeList = [];
 
-function salmonStore(storeName, minCustomersPerHour, maxCustomersPerHour, averageCookiesPerCustomer){
-  'use strict';
+function salmonStore (storeName, minCustomers, maxCustomers, avgItemBought) {
   this.storeName = storeName;
-  this.minCustomersPerHour = minCustomersPerHour;
-  this.maxCustomersPerHour = maxCustomersPerHour;
-  this.averageCookiesPerCustomer = averageCookiesPerCustomer;
-  this.storeOpenTime = 6;
-  this.storeCloseTime = 8;
-  this.storeOpenHours = 0;
-  this.estimatedCookiesPerHour = [];
-  this.totalCookiesPerDay = 0;
-  this.randomCustomersPerHour = function() {
-    return Math.floor((Math.random() * (this.maxCustomersPerHour - this.minCustomersPerHour + 1)) + this.minCustomersPerHour);
+  this.minCustomers = minCustomers;
+  this.maxCustomers = maxCustomers;
+  this.avgItemBought = avgItemBought;
+  this.total = 0;
+  this.hourlyCustomers = [];
+  this.hourlySales = [];
+  this.hoursOpen = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
+
+  this.calcHourlyCustomers = function() {
+    for (var i = 0; i < this.hoursOpen.length; i++) {
+      var currentHourCustomers = Math.floor(Math.random() * (this.maxCustomers - this.minCustomers + 1)) + this.minCustomers;
+      this.hourlyCustomers.push(currentHourCustomers);
+    }
+    // console.log(this.hourlyCustomers);
   };
 
-  this.simulateCookies = function() {
-    this.storeOpenHours = this.storeCloseTime + 12 - this.storeOpenTime + 1;
-    //console.log(this.storeOpenHours);
-    for ( var i = 0; i < this.storeOpenHours; i++) // fixme assumes store open before noon, close after noon.
-    {
-      this.estimatedCookiesPerHour[i] = Math.round(this.randomCustomersPerHour() * this.averageCookiesPerCustomer);
-    //  console.log( i + ', ' + this.estimatedCookiesPerHour[i]);
-      this.totalCookiesPerDay += this.estimatedCookiesPerHour[i];
+  this.calcHourlySales = function(){
+    for (var i = 0; i < this.hourlyCustomers.length; i++) {
+      var currentHourSales = Math.floor(this.hourlyCustomers[i] * this.avgItemBought);
+      this.hourlySales.push(currentHourSales);
+      this.total += currentHourSales;
     }
-    console.log(this.totalCookiesPerDay);
+    // console.log(this.hourlySales);
   };
-  this.makeRow = function(rowClass) {
+
+  this.makeRow = function() {
     var appendRows = document.getElementById('append-rows');
     var tr = document.createElement('tr');
     var th = document.createElement('th');
-    tr.className = rowClass;
     th.textContent = this.storeName;
-    th.className = 'storename';
     tr.appendChild(th);
 
-    for ( var i = 0 ; i < this.estimatedCookiesPerHour.length ; i++){
+    for ( var i = 0 ; i < this.hourlySales.length ; i++){
       var td = document.createElement('td');
-      td.textContent = this.estimatedCookiesPerHour[i];
+      td.textContent = this.hourlySales[i];
       tr.appendChild(td);
-    //  console.log('per hour' + this.estimatedCookiesPerHour[i]);
     }
     var newTd = document.createElement('td');
-    newTd.value = this.totalCookiesPerDay;
-    newTd.textContent = this.totalCookiesPerDay;
-    newTd.className = 'totalColumn';
+    newTd.value = this.total;
+    newTd.textContent = this.total;
     tr.appendChild(newTd);
+
     appendRows.appendChild(tr);
   };
 
-  this.simulateCookies();
-}
+  this.calcHourlyCustomers();
+  this.calcHourlySales();
+};
 
 storeList.push(new salmonStore('Pike Place', 17, 88, 5.2));
 storeList.push(new salmonStore('Seatac Airport', 6, 18, 1.2));
@@ -58,38 +58,9 @@ storeList.push(new salmonStore('South Center', 11, 38, 1.9));
 storeList.push(new salmonStore('Belleuve Square', 20, 48, 3.3));
 storeList.push(new salmonStore('Alki', 3, 24, 2.6));
 
-function salesReport(){
-  var allCookies = 0;
-  for ( var i = 0 ; i < storeList.length ; i ++){
-    if ( i % 2 === 0 ){
-
-    }
-    storeList[i].makeRow( function() { if( i % 2) { return 'evenRow'; } else return 'oddRow';}() );
-    allCookies += storeList[i].totalCookiesPerDay;
-  }
-  var myTotal = document.getElementById('append-total');
-  var tr = document.createElement('tr');
-  var th = document.createElement('th');
-  th.textContent = 'Total';
-  tr.appendChild(th);
-
-  for ( var i = 0 ; i < storeList[0].estimatedCookiesPerHour.length ; i++){
-    var td = document.createElement('td');
-    td.textContent = '';
-    //td.className = 'totalRow';
-    tr.appendChild(td);
-  }
-  var newTd = document.createElement('td');
-  newTd.value = allCookies;
-  newTd.textContent = allCookies;
-  newTd.className = 'grandtotal';
-  tr.appendChild(newTd);
-  myTotal.appendChild(tr);
-
-  // myTotal.textContent = allCookies;
-  // document.body.appendChild(myTotal);
-};
-salesReport();
+for ( var i = 0 ; i < storeList.length ; i ++){
+  storeList[i].makeRow();
+}
 
 var newStoreForm = document.getElementById('newStoreInput');
 
@@ -97,13 +68,15 @@ var formInput = function(event){
   event.preventDefault();
 
   var storeNameBox = event.target.storeNameBox.value;
+
   var minCustomersBox = parseInt(event.target.minCustomersBox.value);
   var maxCustomersBox = parseInt(event.target.maxCustomersBox.value);
   var avgItemBoughtBox = event.target.avgItemBoughtBox.value;
 
   console.log(storeNameBox + ' ' + minCustomersBox + ' ' + maxCustomersBox + ' ' + avgItemBoughtBox);
   storeList.push(new salmonStore(storeNameBox, minCustomersBox, maxCustomersBox, avgItemBoughtBox));
-  storeList[storeList.length - 1].makeRow();
+
+  storeList[i].makeRow();
 
   event.target.storeNameBox.value = null;
   event.target.minCustomersBox.value = null;

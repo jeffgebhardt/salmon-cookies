@@ -33,56 +33,62 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="container">
     <div class="row">
-      <div class="one-half column" style="margin-top: 25%">
-        <h1>Cookies Sold Per Hour by Location</h1>
-        <br>
+        <div class="one.column" style="margin-top: 5%">
 
-        <table>
-          <thead>
-          <tr>
-            <th></th>
-            <th>6am</th>
-            <th>7am</th>
-            <th>8am</th>
-            <th>9am</th>
-            <th>10am</th>
-            <th>11am</th>
-            <th>12pm</th>
-            <th>1pm</th>
-            <th>2pm</th>
-            <th>3pm</th>
-            <th>4pm</th>
-            <th>5pm</th>
-            <th>6pm</th>
-            <th>7pm</th>
-            <th>8pm</th>
-            <th>Total</th>
-          </tr>
-        </thead>
-        <tbody id="append-rows">
-          <tr id="storeOne">
-          </tr>
-        </tbody>
-        </table>
-        <br>
-
-        <form id="newStoreInput">
-          <table>
-          <tbody>
-            <tr>
-            <td><input type="text" name="storeNameBox" placeholder="Store Name"></td>
-            <td><input type="number" name="minCustomersBox" placeholder="Min Customers" step="1" min="0"></td>
-            <td><input type="number" name="maxCustomersBox" placeholder="Max Customers" step="1" min="0"></td>
-            <td><input type="number" name="avgItemBoughtBox" placeholder="Average Cookies Bought" step="any"></td>
-            <td><button type="submit" id="submit-button">Submit</button></td>
-            </tr>
-          </tbody>
-          <table>
-        </form>
-      </div>
+            <form id="newStoreInput">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input type="text" name="storeNameBox" placeholder="Store Name">
+                            </td>
+                            <td>
+                                <input type="number" name="minCustomersBox" placeholder="Min Customers" step="1" min="0">
+                            </td>
+                            <td>
+                                <input type="number" name="maxCustomersBox" placeholder="Max Customers" step="1" min="0">
+                            </td>
+                            <td>
+                                <input type="number" name="avgItemBoughtBox" placeholder="Average Cookies Bought" step="any">
+                            </td>
+                            <td>
+                                <button type="submit" id="submit-button">Submit</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <table>
+            </form>
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>6am</th>
+                        <th>7am</th>
+                        <th>8am</th>
+                        <th>9am</th>
+                        <th>10am</th>
+                        <th>11am</th>
+                        <th>12pm</th>
+                        <th>1pm</th>
+                        <th>2pm</th>
+                        <th>3pm</th>
+                        <th>4pm</th>
+                        <th>5pm</th>
+                        <th>6pm</th>
+                        <th>7pm</th>
+                        <th>8pm</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody id="append-rows">
+                    <tr id="storeOne">
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+        </div>
     </div>
-  </div>
-
+</div>
 <!-- Link to Javascripts
 _____________________________________________________-->
 <script src="js/sales.js"></script>
