@@ -1,105 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
-  <!-- Basic Page Needs
+    <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta charset="utf-8">
-  <title>Sales</title>
-  <meta name="description" content="Sales">
-  <meta name="author" content="Jeff">
+    <meta charset="utf-8">
+    <title>Sales</title>
+    <meta name="description" content="Sales">
+    <meta name="author" content="Jeff">
 
-  <!-- Mobile Specific Metas
+    <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- FONT
+    <!-- FONT
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
 
-  <!-- CSS
+    <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/skeleton.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
 
-  <!-- Favicon
+    <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="icon" type="image/png" href="images/favicon.png">
 
 </head>
+
 <body>
 
-  <!-- Primary Page Layout
+    <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <div class="container">
-    <div class="row">
-      <div class="one.column" style="margin-top: 5%">
-        <a href="index.html"><button>Home</button></a>
-      </div>
-    </div>
+    <div class="container">
+        <div class="row">
+            <div class="one.column" style="margin-top: 5%">
+                <a href="index.html">
+                    <button>Home</button>
+                </a>
+            </div>
+        </div>
 
-    <div class="row">
-        <div class="one.column">
+        <div class="row">
+            <div class="one.column">
 
-            <form id="newStoreInput">
+                <form id="newStoreInput">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input type="text" name="storeNameBox" placeholder="Store Name">
+                                </td>
+                                <td>
+                                    <input type="number" name="minCustomersBox" placeholder="Min Customers" step="1" min="0">
+                                </td>
+                                <td>
+                                    <input type="number" name="maxCustomersBox" placeholder="Max Customers" step="1" min="0">
+                                </td>
+                                <td>
+                                    <input type="number" name="avgItemBoughtBox" placeholder="Average Cookies Bought" step="any">
+                                </td>
+                                <td>
+                                    <button type="submit" id="submit-button">Submit</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <table>
+                </form>
                 <table>
-                    <tbody>
+                    <thead>
                         <tr>
-                            <td>
-                                <input type="text" name="storeNameBox" placeholder="Store Name">
-                            </td>
-                            <td>
-                                <input type="number" name="minCustomersBox" placeholder="Min Customers" step="1" min="0">
-                            </td>
-                            <td>
-                                <input type="number" name="maxCustomersBox" placeholder="Max Customers" step="1" min="0">
-                            </td>
-                            <td>
-                                <input type="number" name="avgItemBoughtBox" placeholder="Average Cookies Bought" step="any">
-                            </td>
-                            <td>
-                                <button type="submit" id="submit-button">Submit</button>
-                            </td>
+                            <th></th>
+                            <th>6am</th>
+                            <th>7am</th>
+                            <th>8am</th>
+                            <th>9am</th>
+                            <th>10am</th>
+                            <th>11am</th>
+                            <th>12pm</th>
+                            <th>1pm</th>
+                            <th>2pm</th>
+                            <th>3pm</th>
+                            <th>4pm</th>
+                            <th>5pm</th>
+                            <th>6pm</th>
+                            <th>7pm</th>
+                            <th>8pm</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="append-rows">
+                        <tr id="storeOne">
                         </tr>
                     </tbody>
-                    <table>
-            </form>
-            <table>
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>6am</th>
-                        <th>7am</th>
-                        <th>8am</th>
-                        <th>9am</th>
-                        <th>10am</th>
-                        <th>11am</th>
-                        <th>12pm</th>
-                        <th>1pm</th>
-                        <th>2pm</th>
-                        <th>3pm</th>
-                        <th>4pm</th>
-                        <th>5pm</th>
-                        <th>6pm</th>
-                        <th>7pm</th>
-                        <th>8pm</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody id="append-rows">
-                    <tr id="storeOne">
-                    </tr>
-                </tbody>
-            </table>
-            <br>
+                </table>
+                <br>
+            </div>
         </div>
     </div>
-</div>
-<!-- Link to Javascripts
+    <!-- Link to Javascripts
 _____________________________________________________-->
-<script src="js/sales.js"></script>
+    <script src="js/sales.js"></script>
 
-<!-- End Document
+    <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 </body>
+
 </html>

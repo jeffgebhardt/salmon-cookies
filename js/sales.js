@@ -1,7 +1,7 @@
 'use strict';
 var storeList = [];
 
-function salmonStore (storeName, minCustomers, maxCustomers, avgItemBought) {
+function salmonStore(storeName, minCustomers, maxCustomers, avgItemBought) {
   this.storeName = storeName;
   this.minCustomers = minCustomers;
   this.maxCustomers = maxCustomers;
@@ -16,16 +16,16 @@ function salmonStore (storeName, minCustomers, maxCustomers, avgItemBought) {
       var currentHourCustomers = Math.floor(Math.random() * (this.maxCustomers - this.minCustomers + 1)) + this.minCustomers;
       this.hourlyCustomers.push(currentHourCustomers);
     }
-    // console.log(this.hourlyCustomers);
+      // console.log(this.hourlyCustomers);
   };
 
-  this.calcHourlySales = function(){
+  this.calcHourlySales = function() {
     for (var i = 0; i < this.hourlyCustomers.length; i++) {
       var currentHourSales = Math.floor(this.hourlyCustomers[i] * this.avgItemBought);
       this.hourlySales.push(currentHourSales);
       this.total += currentHourSales;
     }
-    // console.log(this.hourlySales);
+      // console.log(this.hourlySales);
   };
 
   this.makeRow = function() {
@@ -35,7 +35,7 @@ function salmonStore (storeName, minCustomers, maxCustomers, avgItemBought) {
     th.textContent = this.storeName;
     tr.appendChild(th);
 
-    for ( var i = 0 ; i < this.hourlySales.length ; i++){
+    for (var i = 0; i < this.hourlySales.length; i++) {
       var td = document.createElement('td');
       td.textContent = this.hourlySales[i];
       tr.appendChild(td);
@@ -58,13 +58,13 @@ storeList.push(new salmonStore('South Center', 11, 38, 1.9));
 storeList.push(new salmonStore('Belleuve Square', 20, 48, 3.3));
 storeList.push(new salmonStore('Alki', 3, 24, 2.6));
 
-for ( var i = 0 ; i < storeList.length ; i ++){
+for (var i = 0; i < storeList.length; i++) {
   storeList[i].makeRow();
 }
 
 var newStoreForm = document.getElementById('newStoreInput');
 
-var formInput = function(event){
+var formInput = function(event) {
   event.preventDefault();
 
   var storeNameBox = event.target.storeNameBox.value;
